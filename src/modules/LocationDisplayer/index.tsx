@@ -1,0 +1,75 @@
+import LocationHistoryList from "../../components/LocationHistoryList";
+import styles from "./styles.module.scss";
+import { useContext, useEffect, useReducer, useState } from "react";
+import locationService from "../../api/locationService";
+import LocationsContext from "../../contexts/LocationsContext";
+import { locationReducer } from "../../reducers/locationReducer";
+import { EReducerActions } from "../../dto/base/EReducerActions";
+import SearchInput from "../../components/SearchInput";
+import CurrentLocation from "../../components/CurrentLocation";
+
+const LocationDisplayer = () => {
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [inputValue, setInputValue] = useState("");
+  const { locations, setLocations } = useContext(LocationsContext);
+  const [state, dispatch] = useReducer(locationReducer, locations);
+
+  const { data: IPAddressData, isLoading: loadingIP } =
+    locationService.useGetIPAddress();
+
+  const { data, isLoading: loadingLocation } = locationService.useGetLocation(
+    searchValue,
+    !!searchValue.length
+  );
+
+  const isLoading = loadingIP || loadingLocation;
+
+  useEffect(() => {
+    if (!IPAddressData?.ip) return;
+    setSearchValue(IPAddressData.ip);
+  }, [IPAddressData]);
+
+  useEffect(() => {
+    if (!data?.ip) return;
+    dispatch({ type: EReducerActions.PUSH, payload: data });
+  }, [data]);
+
+  useEffect(() => {
+    setLocations(state.reverse());
+  }, [state]);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setSearchValue(inputValue);
+    setInputValue("");
+  };
+
+  return (
+    <div className={styles.layout}>
+      <div className={styles.wrapper}>
+        <div className={styles.historyWrapper}>
+          <LocationHistoryList locationsHistory={locations} />
+        </div>
+        <div className={styles.location}>
+          <CurrentLocation
+            location={locations?.[0]}
+            isLoading={isLoading || !locations?.[0]}
+          />
+          <form onSubmit={handleSubmit}>
+            <SearchInput
+              value={inputValue}
+              isLoading={isLoading}
+              setValue={(t) => setInputValue(t)}
+            />
+          </form>
+          <CurrentLocation
+            location={locations?.[1]}
+            isLoading={isLoading || !locations?.[1]}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default LocationDisplayer;
