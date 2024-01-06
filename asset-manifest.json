@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/iplocalization-catcher-sfm/static/css/main.707b6072.css",
-    "main.js": "/iplocalization-catcher-sfm/static/js/main.6523fa9c.js",
+    "main.js": "/iplocalization-catcher-sfm/static/js/main.7567ab21.js",
     "index.html": "/iplocalization-catcher-sfm/index.html",
     "main.707b6072.css.map": "/iplocalization-catcher-sfm/static/css/main.707b6072.css.map",
-    "main.6523fa9c.js.map": "/iplocalization-catcher-sfm/static/js/main.6523fa9c.js.map"
+    "main.7567ab21.js.map": "/iplocalization-catcher-sfm/static/js/main.7567ab21.js.map"
   },
   "entrypoints": [
     "static/css/main.707b6072.css",
-    "static/js/main.6523fa9c.js"
+    "static/js/main.7567ab21.js"
   ]
 }
