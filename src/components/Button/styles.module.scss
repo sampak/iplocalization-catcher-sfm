@@ -1,0 +1,28 @@
+@import "src/styles/colors.scss";
+
+.button {
+  border-radius: 5px;
+  border: 1px solid $buttonBackgroundColor;
+  padding: 0;
+  background: $buttonBackgroundColor;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 32px;
+  cursor: pointer;
+
+  &:hover {
+    background: $blueHoverColor;
+    border-color: $blueHoverColor;
+  }
+
+  &:disabled {
+    background: $buttonDisabledBackgroundColor;
+    border-color: $buttonDisabledBackgroundColor;
+
+    &:hover {
+      background: $buttonDisabledBackgroundColor;
+      border-color: $buttonDisabledBackgroundColor;
+    }
+  }
+}
