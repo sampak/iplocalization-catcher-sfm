@@ -18,7 +18,7 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-const Map: FC<Props> = ({ location, isLoading }) => {
+const Map: FC<Props> = ({ header, location, isLoading }) => {
   const mapRef = useRef(null);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Map: FC<Props> = ({ location, isLoading }) => {
   }, [location]);
 
   return (
-    <Card>
+    <Card header={header}>
       <>
         {isLoading && <Loading />}
         {!isLoading && (

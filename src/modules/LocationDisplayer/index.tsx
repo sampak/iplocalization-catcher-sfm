@@ -7,8 +7,11 @@ import { locationReducer } from "../../reducers/locationReducer";
 import { EReducerActions } from "../../dto/base/EReducerActions";
 import SearchInput from "../../components/SearchInput";
 import CurrentLocation from "../../components/CurrentLocation";
+import { IPosition } from "../../dto/base/IPosition";
+import HistoryLocation from "../../components/Historylocation";
 
 const LocationDisplayer = () => {
+  const [prevLocation, setPrevLocation] = useState<IPosition | null>(null);
   const [searchValue, setSearchValue] = useState<string>("");
   const [inputValue, setInputValue] = useState("");
   const { locations, setLocations } = useContext(LocationsContext);
@@ -38,6 +41,12 @@ const LocationDisplayer = () => {
     setLocations(state.reverse());
   }, [state]);
 
+  useEffect(() => {
+    if (!prevLocation && locations.length + 1 >= 1) {
+      setPrevLocation(locations[1]);
+    }
+  }, [locations]);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSearchValue(inputValue);
@@ -62,10 +71,7 @@ const LocationDisplayer = () => {
               setValue={(t) => setInputValue(t)}
             />
           </form>
-          <CurrentLocation
-            location={locations?.[1]}
-            isLoading={isLoading || !locations?.[1]}
-          />
+          <HistoryLocation location={prevLocation} isLoading={isLoading} />
         </div>
       </div>
     </div>

@@ -1,3 +1,5 @@
+import { ILocation } from "./ILocation";
+
 export interface IPosition {
   ip: string;
   type: string;
@@ -11,5 +13,5 @@ export interface IPosition {
   zip: string;
   latitude: number;
   longitude: number;
-  location: Location;
+  location: ILocation;
 }

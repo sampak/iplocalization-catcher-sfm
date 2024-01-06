@@ -1,0 +1,25 @@
+.wrapper {
+}
+
+.box {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 18px;
+
+  img {
+    width: 24px;
+    height: 16px;
+  }
+}
+
+.label {
+  font-weight: 500;
+}
+
+.data {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
