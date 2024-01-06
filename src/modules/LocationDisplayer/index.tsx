@@ -45,7 +45,7 @@ const LocationDisplayer = () => {
   }, [state]);
 
   useEffect(() => {
-    if (!prevLocation && locations.length + 1 >= 1) {
+    if (locations.length + 1 >= 1) {
       setPrevLocation(locations[1]);
     }
   }, [locations]);
