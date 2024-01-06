@@ -34,11 +34,14 @@ const LocationDisplayer = () => {
 
   useEffect(() => {
     if (!data?.ip) return;
-    dispatch({ type: EReducerActions.PUSH, payload: data });
+    dispatch({
+      type: EReducerActions.PUSH,
+      payload: { ...data, searchValue: searchValue },
+    });
   }, [data]);
 
   useEffect(() => {
-    setLocations(state.reverse());
+    setLocations(state);
   }, [state]);
 
   useEffect(() => {

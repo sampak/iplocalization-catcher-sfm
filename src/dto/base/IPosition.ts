@@ -1,6 +1,7 @@
 import { ILocation } from "./ILocation";
 
 export interface IPosition {
+  searchValue?: string;
   ip: string;
   type: string;
   continent_code: string;

@@ -9,6 +9,6 @@ interface IAction {
 export const locationReducer = (state: IPosition[], action: IAction) => {
   switch (action.type) {
     case EReducerActions.PUSH:
-      return [...state, action.payload];
+      return [action.payload, ...state];
   }
 };

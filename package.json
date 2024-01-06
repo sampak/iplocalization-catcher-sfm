@@ -1,6 +1,7 @@
 {
   "name": "sofomo",
   "version": "0.1.0",
+  "homepage": "https://sampak.github.io/ip-catcher",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -49,6 +50,7 @@
     ]
   },
   "devDependencies": {
-    "@types/leaflet": "^1.9.8"
+    "@types/leaflet": "^1.9.8",
+    "gh-pages": "^6.1.1"
   }
 }
