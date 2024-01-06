@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/iplocalization-catcher-sfm/static/css/main.707b6072.css",
-    "main.js": "/iplocalization-catcher-sfm/static/js/main.9ded3af7.js",
+    "main.css": "/iplocalization-catcher-sfm/static/css/main.4f6e10dc.css",
+    "main.js": "/iplocalization-catcher-sfm/static/js/main.3442da9e.js",
     "index.html": "/iplocalization-catcher-sfm/index.html",
-    "main.707b6072.css.map": "/iplocalization-catcher-sfm/static/css/main.707b6072.css.map",
-    "main.9ded3af7.js.map": "/iplocalization-catcher-sfm/static/js/main.9ded3af7.js.map"
+    "main.4f6e10dc.css.map": "/iplocalization-catcher-sfm/static/css/main.4f6e10dc.css.map",
+    "main.3442da9e.js.map": "/iplocalization-catcher-sfm/static/js/main.3442da9e.js.map"
   },
   "entrypoints": [
-    "static/css/main.707b6072.css",
-    "static/js/main.9ded3af7.js"
+    "static/css/main.4f6e10dc.css",
+    "static/js/main.3442da9e.js"
   ]
 }
