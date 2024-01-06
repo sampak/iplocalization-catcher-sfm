@@ -29,8 +29,9 @@ const Map: FC<Props> = ({ header, location, isLoading }) => {
   return (
     <Card header={header}>
       <>
+        {!location && <Loading />}
         {isLoading && <Loading />}
-        {!isLoading && (
+        {!isLoading && location && (
           <MapContainer
             ref={mapRef}
             className={styles.map}

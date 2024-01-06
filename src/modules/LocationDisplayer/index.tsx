@@ -9,6 +9,9 @@ import SearchInput from "../../components/SearchInput";
 import CurrentLocation from "../../components/CurrentLocation";
 import { IPosition } from "../../dto/base/IPosition";
 import HistoryLocation from "../../components/Historylocation";
+import { isIPAddress } from "../../utils/isIPAddress";
+import { isURLAddress } from "../../utils/isURLAddress";
+import { toast } from "react-toastify";
 
 const LocationDisplayer = () => {
   const [prevLocation, setPrevLocation] = useState<IPosition | null>(null);
@@ -17,15 +20,25 @@ const LocationDisplayer = () => {
   const { locations, setLocations } = useContext(LocationsContext);
   const [state, dispatch] = useReducer(locationReducer, locations);
 
-  const { data: IPAddressData, isLoading: loadingIP } =
-    locationService.useGetIPAddress();
+  const {
+    data: IPAddressData,
+    isLoading: loadingIP,
+    isError: IPAddressError,
+  } = locationService.useGetIPAddress();
 
-  const { data, isLoading: loadingLocation } = locationService.useGetLocation(
-    searchValue,
-    !!searchValue.length
-  );
+  const {
+    data,
+    isLoading: loadingLocation,
+    isError: locationError,
+  } = locationService.useGetLocation(searchValue, !!searchValue.length);
 
   const isLoading = loadingIP || loadingLocation;
+  const isError = IPAddressError || locationError;
+
+  useEffect(() => {
+    if (!isError) return;
+    toast.error("Something went wrong! try again later");
+  }, [isError]);
 
   useEffect(() => {
     if (!IPAddressData?.ip) return;
@@ -52,6 +65,18 @@ const LocationDisplayer = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (isLoading) return;
+
+    if (!inputValue.length) {
+      toast.error("Provide IP address or URL address!");
+      return;
+    }
+
+    if (!(isIPAddress(inputValue) || isURLAddress(inputValue))) {
+      toast.error("Provided IP address or URL address is invalid!");
+      return;
+    }
+
     setSearchValue(inputValue);
     setInputValue("");
   };
