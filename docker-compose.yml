@@ -1,0 +1,6 @@
+services:
+  frontend:
+    image: sampak/sofomo:latest
+    restart: always
+    ports:
+      - 80:80
